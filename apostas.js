@@ -10,22 +10,22 @@ function calcularApostas() {
   }
 
   // 1. Calcular apostas para W e D para lucro igual, favorecendo W
-  // x = aposta em W, y = aposta em D
-  // x + y <= valorTotal
-  // oddW * x - y = oddD * y - x
-  // Lucro igual: oddW * x - (x + y) = oddD * y - (x + y)
-  // Simplifica: oddW * x = oddD * y
-  // y = (oddW/oddD) * x
-  // x + y <= valorTotal => x + (oddW/oddD)*x <= valorTotal
-  // x*(1 + oddW/oddD) <= valorTotal
-  // x <= valorTotal / (1 + oddW/oddD)
-  let x = Math.floor(valorTotal / (1 + (oddW/oddD)));
-  let y = Math.floor(valorTotal - x);
-  // Favorecer W: se possível, arredondar y para baixo e dar o resto para x
-  x = valorTotal - y;
-
-  const lucroW = Math.floor(oddW * x - valorTotal);
-  const lucroD = Math.floor(oddD * y - valorTotal);
+  // Procurar a combinação de inteiros (x, y) que mais iguala os lucros
+  let melhorX = 0, melhorY = 0, menorDif = Infinity, melhorLucroW = 0, melhorLucroD = 0;
+  for (let x = valorTotal; x >= 0; x--) {
+    let y = valorTotal - x;
+    let lucroW = Math.floor(oddW * x - valorTotal);
+    let lucroD = Math.floor(oddD * y - valorTotal);
+    let dif = Math.abs(lucroW - lucroD);
+    // Favorecer W: se empate, pega maior x
+    if (dif < menorDif || (dif === menorDif && x > melhorX)) {
+      melhorX = x;
+      melhorY = y;
+      menorDif = dif;
+      melhorLucroW = lucroW;
+      melhorLucroD = lucroD;
+    }
+  }
 
   // 2. Apostar só em W para ter lucro
   // oddW * x - x > 0 => x > 0
@@ -38,11 +38,11 @@ function calcularApostas() {
   const lucroWsolo = Math.floor(oddW * xW - xW);
 
   document.getElementById('resultado').innerHTML =
-    `<div><b>Aposta para lucro igual (favorecendo W):</b><br>
-    Apostar <b>€${x}</b> em W (odd ${oddW})<br>
-    Apostar <b>€${y}</b> em D (odd ${oddD})<br>
-    Lucro se W: <b>€${lucroW}</b><br>
-    Lucro se D: <b>€${lucroD}</b></div><br>
+    `<div><b>Aposta para lucro mais igual possível (favorecendo W):</b><br>
+    Apostar <b>€${melhorX}</b> em W (odd ${oddW})<br>
+    Apostar <b>€${melhorY}</b> em D (odd ${oddD})<br>
+    Lucro se W: <b>€${melhorLucroW}</b><br>
+    Lucro se D: <b>€${melhorLucroD}</b></div><br>
     <div><b>Aposta só em W para ter lucro:</b><br>
     Apostar <b>€${xW}</b> em W (odd ${oddW})<br>
     Lucro: <b>€${lucroWsolo}</b></div>`;
