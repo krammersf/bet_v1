@@ -2,7 +2,7 @@ function calcularApostas() {
   const valorTotal = Math.floor(Number(document.getElementById('valorTotal').value));
   const oddW = Number(document.getElementById('oddW').value);
   const oddD = Number(document.getElementById('oddD').value);
-  const oddL = Number(document.getElementById('oddL').value);
+  const oddL = Number(document.getElementById('oddL').value); 
 
   if (!valorTotal || !oddW || !oddD || !oddL) {
     document.getElementById('resultado').innerText = 'Preencha todos os campos corretamente!';
