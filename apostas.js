@@ -11,19 +11,38 @@ function calcularApostas() {
 
   // 1. Calcular apostas para W e D para lucro igual, favorecendo W
   // Procurar a combinação de inteiros (x, y) que mais iguala os lucros
-  let melhorX = 0, melhorY = 0, menorDif = Infinity, melhorLucroW = 0, melhorLucroD = 0;
+  let melhorX = 0, melhorY = 0, menorDif = Infinity, melhorLucroW = -Infinity, melhorLucroD = -Infinity;
   for (let x = valorTotal; x >= 0; x--) {
     let y = valorTotal - x;
     let lucroW = Math.floor(oddW * x - valorTotal);
     let lucroD = Math.floor(oddD * y - valorTotal);
-    let dif = Math.abs(lucroW - lucroD);
-    // Favorecer W: se empate, pega maior x
-    if (dif < menorDif || (dif === menorDif && x > melhorX)) {
-      melhorX = x;
-      melhorY = y;
-      menorDif = dif;
-      melhorLucroW = lucroW;
-      melhorLucroD = lucroD;
+    // Só considerar se lucroW >= lucroD
+    if (lucroW >= lucroD) {
+      let dif = Math.abs(lucroW - lucroD);
+      // Favorecer W: se empate, pega maior x
+      if (dif < menorDif || (dif === menorDif && x > melhorX)) {
+        melhorX = x;
+        melhorY = y;
+        menorDif = dif;
+        melhorLucroW = lucroW;
+        melhorLucroD = lucroD;
+      }
+    }
+  }
+  // Se não encontrar nenhuma combinação com lucroW >= lucroD, usar o melhor possível
+  if (melhorDif === Infinity) {
+    for (let x = valorTotal; x >= 0; x--) {
+      let y = valorTotal - x;
+      let lucroW = Math.floor(oddW * x - valorTotal);
+      let lucroD = Math.floor(oddD * y - valorTotal);
+      let dif = Math.abs(lucroW - lucroD);
+      if (dif < menorDif || (dif === menorDif && x > melhorX)) {
+        melhorX = x;
+        melhorY = y;
+        menorDif = dif;
+        melhorLucroW = lucroW;
+        melhorLucroD = lucroD;
+      }
     }
   }
 
