@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Apostas</title>
+  <script src="apostas.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    label, input { display: block; margin: 0.5em 0; }
+    button { margin-top: 1em; }
+    #resultado { margin-top: 2em; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Calculadora de Apostas (W D L)</h1>
+  <label>Valor total (€): <input type="number" id="valorTotal" min="1" required></label>
+  <label>Odd W: <input type="number" id="oddW" step="0.01" min="1" required></label>
+  <label>Odd D: <input type="number" id="oddD" step="0.01" min="1" required></label>
+  <label>Odd L: <input type="number" id="oddL" step="0.01" min="1" required></label>
+  <button onclick="calcularApostas()">Calcular</button>
+  <div id="resultado"></div>
+</body>
+</html>
