@@ -126,10 +126,13 @@
         // Alterna entre + e -
         if (document.getElementById('configSection').style.display !== 'none') {
           btn.textContent = '-';
+          setTimeout(() => { window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'}); }, 100);
         } else {
           btn.textContent = '+';
         }
       };
+      // Scroll para o fim ao calcular
+      setTimeout(() => { window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'}); }, 100);
     };
   </script>
 </body>
