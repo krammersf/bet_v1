@@ -123,9 +123,11 @@
       btn.textContent = '+';
       btn.onclick = function() {
         toggleConfig();
-        // Se mostrar config, esconder botão
+        // Alterna entre + e -
         if (document.getElementById('configSection').style.display !== 'none') {
-          btn.style.display = 'none';
+          btn.textContent = '-';
+        } else {
+          btn.textContent = '+';
         }
       };
     };
