@@ -70,15 +70,20 @@ function calcularApostas() {
   let lucroWlucro = Math.floor(oddW * xWlucro - (yEmpateZero + xWlucro));
 
   document.getElementById('resultado').innerHTML =
-    `<div><b>Aposta para lucro mais igual possível (favorecendo W):</b><br>
-    Apostar <b>€${melhorX}</b> em W (odd ${oddW})<br>
-    Apostar <b>€${melhorY}</b> em D (odd ${oddD})<br>
-    Lucro se W: <b>€${melhorLucroW}</b><br>
-    Lucro se D: <b>€${melhorLucroD}</b></div><br>
-    <div><b>Opção: Empate (D) com lucro zero, W com lucro positivo:</b><br>
-    Apostar <b>€${yEmpateZero}</b> em D (odd ${oddD})<br>
-    Apostar <b>€${xWlucro}</b> em W (odd ${oddW})<br>
-    Lucro se D: <b>€0</b><br>
-    Lucro se W: <b>€${lucroWlucro}</b>
+    `<div style="margin-bottom:1.5em;">
+      <span style="color:#d32f2f;font-weight:bold;">Opção 1</span><br>
+      <span style="font-weight:normal;">Aposta para lucro mais igual possível (favorecendo W):</span><br>
+      Apostar <span style="font-weight:bold;color:#1976d2;">€${melhorX}</span> em W (odd ${oddW})<br>
+      Apostar <span style="font-weight:bold;color:#1976d2;">€${melhorY}</span> em D (odd ${oddD})<br>
+      <span style="font-weight:normal;">Lucro se W: <span style="font-weight:bold;color:#388e3c;">€${melhorLucroW}</span></span><br>
+      <span style="font-weight:normal;">Lucro se D: <span style="font-weight:bold;color:#388e3c;">€${melhorLucroD}</span></span>
+    </div>
+    <div>
+      <span style="color:#d32f2f;font-weight:bold;">Opção 2</span><br>
+      <span style="font-weight:normal;">Empate (D) com lucro zero, W com lucro positivo:</span><br>
+      Apostar <span style="font-weight:bold;color:#333;">€${yEmpateZero}</span> em D (odd ${oddD})<br>
+      Apostar <span style="font-weight:bold;color:#333;">€${xWlucro}</span> em W (odd ${oddW})<br>
+      <span style="font-weight:normal;">Lucro se D: <span style="font-weight:bold;color:#388e3c;">€0</span></span><br>
+      <span style="font-weight:normal;">Lucro se W: <span style="font-weight:bold;color:#388e3c;">€${lucroWlucro}</span></span>
     </div>`;
 }
