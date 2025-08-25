@@ -30,7 +30,7 @@ function calcularApostas() {
     }
   }
   // Se não encontrar nenhuma combinação com lucroW >= lucroD, usar o melhor possível
-  if (melhorDif === Infinity) {
+  if (menorDif === Infinity) {
     for (let x = valorTotal; x >= 0; x--) {
       let y = valorTotal - x;
       let lucroW = Math.floor(oddW * x - valorTotal);
