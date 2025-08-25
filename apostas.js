@@ -46,6 +46,7 @@ function calcularApostas() {
     }
   }
 
+
   // 2. Apostar só em W para ter lucro
   // oddW * x - x > 0 => x > 0
   // oddW > 1
@@ -56,6 +57,18 @@ function calcularApostas() {
   if (xW < 1) xW = 1;
   const lucroWsolo = Math.floor(oddW * xW - xW);
 
+  // 2b. Apostar zero no empate (y=0), quanto apostar em W para lucro zero?
+  // oddW * x - x = 0 => x = 0 (não faz sentido), mas queremos oddW * x - valorTotal = 0
+  // oddW * x = valorTotal => x = valorTotal / oddW
+  let xZeroLucro = Math.ceil(valorTotal / oddW);
+  let lucroZeroLucro = Math.floor(oddW * xZeroLucro - valorTotal);
+  // Para garantir lucro positivo, x > valorTotal / oddW
+  let xLucroPositivo = xZeroLucro;
+  while (oddW * xLucroPositivo - valorTotal <= 0) {
+    xLucroPositivo++;
+  }
+  let lucroLucroPositivo = Math.floor(oddW * xLucroPositivo - valorTotal);
+
   document.getElementById('resultado').innerHTML =
     `<div><b>Aposta para lucro mais igual possível (favorecendo W):</b><br>
     Apostar <b>€${melhorX}</b> em W (odd ${oddW})<br>
@@ -64,5 +77,9 @@ function calcularApostas() {
     Lucro se D: <b>€${melhorLucroD}</b></div><br>
     <div><b>Aposta só em W para ter lucro:</b><br>
     Apostar <b>€${xW}</b> em W (odd ${oddW})<br>
-    Lucro: <b>€${lucroWsolo}</b></div>`;
+    Lucro: <b>€${lucroWsolo}</b><br><br>
+    <b>Se apostar zero no empate (D):</b><br>
+    Para lucro zero, apostar <b>€${xZeroLucro}</b> em W (lucro: €${lucroZeroLucro})<br>
+    Para lucro positivo, apostar <b>€${xLucroPositivo}</b> em W (lucro: €${lucroLucroPositivo})
+    </div>`;
 }
