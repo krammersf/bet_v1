@@ -80,9 +80,5 @@ function calcularApostas() {
     Apostar <b>€${xWlucro}</b> em W (odd ${oddW})<br>
     Lucro se D: <b>€0</b><br>
     Lucro se W: <b>€${lucroWlucro}</b>
-    </div><br>
-    <div><b>Aposta só em W para ter lucro:</b><br>
-    Apostar <b>€${xW}</b> em W (odd ${oddW})<br>
-    Lucro: <b>€${lucroWsolo}</b>
     </div>`;
 }
