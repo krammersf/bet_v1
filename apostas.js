@@ -72,7 +72,7 @@ function calcularApostas() {
   document.getElementById('resultado').innerHTML =
     `<div style="margin-bottom:1.5em;">
       <span style="color:#d32f2f;font-weight:bold;">Opção 1</span><br>
-  <span style="font-weight:normal;font-size:0.95em;">Aposta para lucro mais igual possível (favorecendo W):</span><br>
+  <span style="font-weight:normal;font-size:0.70em;">Aposta para lucro mais igual possível (favorecendo W):</span><br>
       Apostar <span style="font-weight:bold;color:#1976d2;">€${melhorX}</span> em W (odd ${oddW})<br>
       Apostar <span style="font-weight:bold;color:#1976d2;">€${melhorY}</span> em D (odd ${oddD})<br>
       <span style="font-weight:normal;">Lucro se W: <span style="font-weight:bold;color:#388e3c;">€${melhorLucroW}</span></span><br>
@@ -80,7 +80,7 @@ function calcularApostas() {
     </div>
     <div>
       <span style="color:#d32f2f;font-weight:bold;">Opção 2</span><br>
-  <span style="font-weight:normal;font-size:0.95em;">Empate (D) com lucro zero, W com lucro positivo:</span><br>
+  <span style="font-weight:normal;font-size:0.70em;">Empate (D) com lucro zero, W com lucro positivo:</span><br>
   Apostar <span style="font-weight:bold;color:#bfa100;">€${yEmpateZero}</span> em D (odd ${oddD})<br>
   Apostar <span style="font-weight:bold;color:#bfa100;">€${xWlucro}</span> em W (odd ${oddW})<br>
       <span style="font-weight:normal;">Lucro se D: <span style="font-weight:bold;color:#388e3c;">€0</span></span><br>

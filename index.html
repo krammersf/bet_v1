@@ -84,17 +84,51 @@
 </head>
 <body>
   <div class="container">
-    <h1>Calculadora de Apostas (W D L)</h1>
-    <label for="valorTotal">Valor total (€):</label>
-    <input type="number" id="valorTotal" min="1" required autocomplete="off">
-    <label for="oddW">Odd W:</label>
-    <input type="number" id="oddW" step="0.01" min="1" required autocomplete="off">
-    <label for="oddD">Odd D:</label>
-    <input type="number" id="oddD" step="0.01" min="1" required autocomplete="off">
-    <label for="oddL">Odd L:</label>
-    <input type="number" id="oddL" step="0.01" min="1" required autocomplete="off">
-    <button onclick="calcularApostas()">Calcular</button>
+    <div id="configSection">
+      <h1>Calculadora de Apostas (W D L)</h1>
+      <label for="valorTotal">Valor total (€):</label>
+      <input type="number" id="valorTotal" min="1" required autocomplete="off">
+      <label for="oddW">Odd W:</label>
+      <input type="number" id="oddW" step="0.01" min="1" required autocomplete="off">
+      <label for="oddD">Odd D:</label>
+      <input type="number" id="oddD" step="0.01" min="1" required autocomplete="off">
+      <label for="oddL">Odd L:</label>
+      <input type="number" id="oddL" step="0.01" min="1" required autocomplete="off">
+      <button onclick="calcularApostas()">Calcular</button>
+    </div>
+    <div style="text-align:right;margin-bottom:0.5em;">
+      <button id="toggleConfigBtn" onclick="toggleConfig()" style="font-size:1.3em;line-height:1em;width:2em;height:2em;padding:0;margin:0;display:none;">-</button>
+    </div>
     <div id="resultado"></div>
   </div>
+  <script>
+    function toggleConfig() {
+      const config = document.getElementById('configSection');
+      const btn = document.getElementById('toggleConfigBtn');
+      if (config.style.display === 'none') {
+        config.style.display = '';
+        btn.textContent = '-';
+      } else {
+        config.style.display = 'none';
+        btn.textContent = '+';
+      }
+    }
+    // Modificar calcularApostas para esconder config e mostrar botão
+    const oldCalcularApostas = window.calcularApostas;
+    window.calcularApostas = function() {
+      oldCalcularApostas();
+      document.getElementById('configSection').style.display = 'none';
+      const btn = document.getElementById('toggleConfigBtn');
+      btn.style.display = '';
+      btn.textContent = '+';
+      btn.onclick = function() {
+        toggleConfig();
+        // Se mostrar config, esconder botão
+        if (document.getElementById('configSection').style.display !== 'none') {
+          btn.style.display = 'none';
+        }
+      };
+    };
+  </script>
 </body>
 </html>
